@@ -1,0 +1,922 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            margin: 0;
+            height: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        .container {
+            font-size: 10px;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .sun {
+            position: absolute;
+            top: 30em;
+            left: 10%;
+            width: 10em;
+            height: 10em;
+            background-color: yellow;
+            border-radius: 50%;
+            box-shadow: 0 0 3em white;
+            animation: orbitSun 60s linear infinite alternate-reverse;
+        }
+
+        .earth,
+        .moon {
+            position: absolute;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+            border-width: 0.1em 0.1em 0 0;
+            border-radius: 50%;
+        }
+
+        .earth {
+            top: -10em;
+            left: -10em;
+            width: 30em;
+            height: 30em;
+            animation: orbit 36.5s linear infinite;
+        }
+
+        .moon {
+            top: 0;
+            right: 0;
+            width: 8em;
+            height: 8em;
+            animation: orbit 2.7s linear infinite;
+        }
+
+        .earth::before,
+        .moon::before {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .earth::before {
+            top: 2.8em;
+            right: 2.8em;
+            width: 3em;
+            height: 3em;
+            background-color: aqua;
+        }
+
+        .moon::before {
+            top: 0.8em;
+            right: 0.2em;
+            width: 1.2em;
+            height: 1.2em;
+            background-color: silver;
+        }
+
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes orbitSun {
+            form {
+                left: 10%;
+            }
+
+            to {
+                left: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sun">
+            <div class="earth">
+                <div class="moon"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- <style>
+        .main-section>.main-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 30px;
+            background-color: yellow;
+        }
+
+        .main-section>.ikinci {
+            padding: 50px !important;
+        }
+    </style> -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .for-ul {
+            width: 100%;
+            padding: 50px;
+            background-color: aqua;
+            overflow: hidden;
+        }
+
+        .for-ul>ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: rgb(6, 59, 97);
+            list-style: none;
+        }
+
+        .for-ul>.menu {
+            transform: translateX(100%);
+        }
+
+
+        .for-ul>ul>li {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(13, 74, 74);
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            font-size: 1.3rem;
+        }
+
+        .for-ul>ul>li:nth-child(1) {
+            font-size: 1.6rem;
+            font-weight: 900;
+        }
+
+        form {
+            position: absolute;
+            z-index: 100000;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        form>input {
+            background-color: darkslategrey;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px;
+        }
+
+        .form-class {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <!-- 
+    <input type="text" id="input1">
+    <section class="main-section"></section> -->
+
+    <section class="for-ul">
+        <ul>
+            <li>
+                <span>ad</span>
+                <span>soyad</span>
+                <span>yash</span>
+            </li>
+        </ul>
+
+        <button>Əlavə et</button>
+
+        <form>
+            <input type="text" name="" id="input1" placeholder="ad">
+            <input type="text" name="" id="input2" placeholder="soyad">
+            <input type="text" name="" id="input3" placeholder="yash">
+
+            <button id="button">Daxil et</button>
+        </form>
+
+    </section>
+
+
+
+    <script>
+
+
+
+
+        const ul = document.getElementsByTagName('ul')[0];
+        const form = document.getElementsByTagName('form')[0];
+        const button = document.getElementsByTagName('button')[0];
+        const formButton = document.getElementById('button');
+        const input1 = document.getElementById('input1');
+        const input2 = document.getElementById('input2');
+        const input3 = document.getElementById('input3');
+
+        button.addEventListener('click', (e) => {
+            form.classList.add('form-class');
+            e.preventDefault();
+        });
+
+        let array1 = [], array2 = [], array3 = [];
+
+        formButton.addEventListener('click', (e) => {
+
+            ul.innerHTML = `
+            <li>
+                <span>ad</span>
+                <span>soyad</span>
+                <span>yash</span>
+            </li>`;
+            
+            array1.push(input1.value);
+            array2.push(input2.value);
+            array3.push(input3.value);
+
+            localStorage.setItem('ArrayofAd', JSON.stringify(array1));
+            localStorage.setItem('ArrayOfSoyad', JSON.stringify(array2));
+            localStorage.setItem('ArrayOfYash', JSON.stringify(array3));
+
+            form.classList.remove('form-class');
+
+            addInputs();
+
+            e.preventDefault()
+        })
+
+
+        const addInputs = () => {
+
+            if (!localStorage.getItem('ArrayofAd')) return;
+
+            array1 = JSON.parse(localStorage.getItem('ArrayofAd'));
+            array2 = JSON.parse(localStorage.getItem('ArrayOfSoyad'));
+            array3 = JSON.parse(localStorage.getItem('ArrayOfYash'));
+
+            for (let i = 0; i < array1.length; i++) {
+
+                const li = document.createElement('li');
+
+                const ad = document.createElement('span');
+                const soyad = document.createElement('span');
+                const yash = document.createElement('span');
+
+                ad.textContent = array1[i];
+                soyad.textContent = array2[i];
+                yash.textContent = array3[i];
+
+                li.append(ad, soyad, yash);
+                ul.append(li);
+
+            }
+        }
+
+        addInputs()
+
+
+        // ul.setAttribute('class', 'menu');
+        // ul.className = 'menu';
+
+        // button.addEventListener('click', () => {
+        //     ul.classList.remove('menu');
+        // });
+
+        // const callTime = () => {
+        //     ul.style.transform = `translateX(${100}px)`;
+        //     a = a + 5;
+
+        //     // if (a > 20) {
+        //     //     clearInterval(myInterval);
+        //     // }
+        // }
+        // let a = 0;
+        // const myInterval = setTimeout(callTime, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+        // const films = [
+        //     {
+        //         filmName: 'Hidden Figures',
+        //         filmCover: 'red',
+        //         filmYear: 2019
+        //     },
+        //     {
+        //         filmName: 'Game of Thrones',
+        //         filmCover: 'blue',
+        //         filmYear: 2019
+        //     },
+        //     {
+        //         filmName: 'House of the Dragon',
+        //         filmCover: 'yellow',
+        //         filmYear: 2020
+        //     },
+        //     {
+        //         filmName: 'The 100',
+        //         filmCover: 'brown',
+        //         filmYear: 2020
+        //     },
+        //     {
+        //         filmName: 'The 100',
+        //         filmCover: 'brown',
+        //         filmYear: 2021
+        //     }
+        // ];
+
+        // const mainSection = document.getElementsByClassName('main-section')[0]
+        // const years = document.createElement('div');
+
+        // let arrayOfYears = []
+        // films.forEach((e) => {
+        //     if (!arrayOfYears.includes(e.filmYear)) {
+        //         const button = document.createElement('button');
+        //         button.textContent = e.filmYear;
+        //         years.append(button);
+        //         arrayOfYears.push(e.filmYear);
+        //     }
+        // });
+
+        // mainSection.append(years);
+
+
+        // const mainBoxes = document.createElement('div')
+        // mainBoxes.setAttribute('class', 'main-box');
+        // years.addEventListener('click', (e) => {
+        //     mainBoxes.innerHTML = '';
+        //     films.forEach((f) => {
+        //         if (e.target.textContent === f.filmYear.toString()) {
+        //             const box = document.createElement('div');
+        //             const filmname = document.createElement('span');
+        //             filmname.textContent = f.filmName;
+        //             const filmyear = document.createElement('span');
+        //             filmyear.textContent = f.filmYear;
+        //             box.style.backgroundColor = f.filmCover;
+
+        //             box.append(filmname, filmyear);
+        //             mainBoxes.append(box);
+        //         }
+        //     });
+
+        //     mainSection.append(mainBoxes);
+        // });
+
+        // years.addEventListener('click', () => {
+        //     mainBoxes.classList.remove('ikinci');
+        // });
+
+
+        // const searchBox = document.getElementById('input1');
+
+        // const searchElements = document.createElement('div');
+        // searchBox.addEventListener('keydown', () => {
+        //     searchElements.innerHTML = ''
+        //     films.forEach((e) => {
+        //         if (e.filmName.toLowerCase().includes(searchBox.value.toLowerCase())) {
+        //             const p = document.createElement('p');
+        //             p.textContent = e.filmName;
+        //             searchElements.append(p);
+        //         }
+        //     });
+        //     mainSection.append(searchElements);
+        // })
+
+
+
+
+
+
+        /*function chevir(ifade2, b) {
+            let eded = "", new_eded = "";
+            while (b >= 1) {
+                eded = eded + b % ifade2;
+                b = Math.floor(b / ifade2);
+            }
+            for (let i = eded.length - 1; i >= 0; i--) {
+                new_eded += eded[i];
+            }
+            return new_eded;
+        }
+
+        let ifade = prompt(`say sistemini
+        qeyd edin:
+        2-lik üçün, 2 yaz, 8-lik üçün 8 yazin
+        `);
+        a = +prompt(`Çevirmək istədiyiniz ədədi daxil edin: `)
+
+        console.log(chevir(ifade, a));*/
+
+        // ifadenin uzunluğu 7 və ya 8 ə bölünərsə, ilk 3 herfi,
+        // eks - halda isə son 3 herfi tapırıq
+        // const ifade = prompt('ifade: ');
+        // if(ifade.length % 7 === 0 || ifade.length % 8 === 0){
+        //     let c = ifade.slice(0, 3);
+        //     console.log(c);
+        // }
+        // else{
+        //     let d = ifade.slice(ifade.length-3, ifade.length);
+        //     console.log(d)
+        // }
+
+
+        /*const ifade = prompt('ifade: ');
+        let say = 0;
+        for (let i = 0; i < ifade.length; i++) {
+            if (ifade[i] === " " && ifade[i + 1].toLocaleLowerCase() === "n") {
+                say++;
+            }
+        }
+        if (ifade[0].toLocaleLowerCase() === "n") {
+            say++;
+        }
+        console.log(say);*/
+
+        // const a = +prompt();
+        // const siyahi = [12, 34, 25, 16, 49, 55, 53];
+        // let say = 0;
+        // const stringSiyahi = siyahi.join();
+        // if (stringSiyahi.includes(a.toString())) {
+        //     console.log(Math.pow(a, 2));
+        // }
+        // else {
+        //     console.log(Math.pow(a, 3));
+        // }
+
+        // for (let i = 0; i < siyahi.length; i++) {
+        //     if (a === siyahi[i]) {
+        //         say++;
+        //     }
+        // }
+
+        // if (say !== 0){
+        //     console.log(Math.pow(a, 2))
+        // }
+        // else{
+        //     console.log(Math.pow(a, 3))
+        // }
+
+
+        // let a = prompt(), cem = 0;
+        // for (let i in a) {
+        //     cem = cem + Number(a[i]);
+        // }
+        // alert(cem);
+
+
+        // let a = prompt(), cem = 0;
+        // for (let i = 0; i < a.length; i++) {
+        //     cem = cem + Number(a[i]);
+        // }
+        // console.log(cem);
+
+
+        // let a = +prompt(), cem = 0;
+        // while (a > 0) {
+        //     cem = cem + (a % 10);
+        //     a = Math.floor(a / 10);
+        // }
+        // console.log(cem);
+
+
+        // const athletes = [
+        //     {
+        //         name: "Usain Bolt",
+        //         sport: "Track and Field",
+        //         hasWorldRecord: true,
+        //         gender: "Male",
+        //         age: 35,
+        //         totalMedals: 8,
+        //         country: "Jamaica",
+        //     },
+        //     {
+        //         name: "Simone Biles",
+        //         sport: "Gymnastics",
+        //         hasWorldRecord: false,
+        //         gender: "Female",
+        //         age: 25,
+        //         totalMedals: 12,
+        //         country: "United States",
+        //     },
+        //     {
+        //         name: "Michael Phelps",
+        //         sport: "Swimming",
+        //         hasWorldRecord: true,
+        //         gender: "Male",
+        //         age: 37,
+        //         totalMedals: 28,
+        //         country: "United States",
+        //     },
+        //     {
+        //         name: "Katie Ledecky",
+        //         sport: "Swimming",
+        //         hasWorldRecord: true,
+        //         gender: "Female",
+        //         age: 25,
+        //         totalMedals: 10,
+        //         country: "United States",
+        //     },
+        //     {
+        //         name: "Allyson Felix",
+        //         sport: "Track and Field",
+        //         hasWorldRecord: false,
+        //         gender: "Female",
+        //         age: 36,
+        //         totalMedals: 9,
+        //         country: "United States",
+        //     },
+        //     {
+        //         name: "Nadia Comăneci",
+        //         sport: "Gymnastics",
+        //         hasWorldRecord: true,
+        //         gender: "Female",
+        //         age: 60,
+        //         totalMedals: 9,
+        //         country: "Romania",
+        //     },
+        //     {
+        //         name: "Birgit Fischer",
+        //         sport: "Canoeing",
+        //         hasWorldRecord: true,
+        //         gender: "Female",
+        //         age: 60,
+        //         totalMedals: 12,
+        //         country: "Germany",
+        //     },
+        //     {
+        //         name: "Mariana Pajón",
+        //         sport: "Cycling",
+        //         hasWorldRecord: false,
+        //         gender: "Female",
+        //         age: 30,
+        //         totalMedals: 4,
+        //         country: "Colombia",
+        //     },
+        //     {
+        //         name: "Wayne Gretzky",
+        //         sport: "Ice Hockey",
+        //         hasWorldRecord: false,
+        //         gender: "Male",
+        //         age: 61,
+        //         totalMedals: 4,
+        //         country: "Canada",
+        //     },
+        //     {
+        //         name: "Yuna Kim",
+        //         sport: "Figure Skating",
+        //         hasWorldRecord: false,
+        //         gender: "Female",
+        //         age: 31,
+        //         totalMedals: 6,
+        //         country: "South Korea",
+        //     },
+        // ];
+
+
+        // const chooseFilter = athletes.filter((item) => {
+        //     return item.age > 60;
+        // })
+
+        // console.log(chooseFilter);
+
+
+
+        // const listOfParticipants = [
+        //     {
+        //         nameOfP: 'Aysel&Araj',
+        //         nameOfS: 'Always',
+        //         year: 2009,
+        //         place: 3
+        //     },
+        //     {
+        //         nameOfP: 'Fərid',
+        //         nameOfS: 'Hold me',
+        //         year: 2013,
+        //         place: 2
+        //     },
+        //     {
+        //         nameOfP: 'ElNikki',
+        //         nameOfS: 'Runnig Scared',
+        //         year: 2011,
+        //         place: 1
+        //     }
+        // ];
+
+
+        // const tap = (obyekt) =>{
+        //     if(obyekt.year<2010){
+        //         console.log(obyekt.nameOfP, obyekt.nameOfS, obyekt.year, obyekt.place)
+        //     }
+        // }
+
+        // for(let i =0; i<listOfParticipants.length; i++){
+        //     tap(listOfParticipants[i]);
+        // }
+
+
+        // const ters = (sum) => {
+        //     let tersEded = "";
+        //     while (sum > 0) {
+        //         tersEded = tersEded + sum % 10;
+        //         sum = Math.floor(sum / 10);
+        //     }
+
+        //     return tersEded;
+        // }
+
+        // const siyahi = [24, 34, 546, 67, 90, 89]; let cem = 0;
+        // for (let element of siyahi) {
+        //     cem += element;
+        // }
+
+        // console.log(ters(cem));
+
+
+        // const multiMedia = [
+        //     {
+        //         nameOfElement: 'always.mp3',
+        //         sizeOfElement: 1234,
+        //         use: false
+        //     },
+        //     {
+        //         nameOfElement: 'prence.mp3',
+        //         sizeOfElement: 230,
+        //         use: true
+        //     },
+        //     {
+        //         nameOfElement: 'yell.mp3ow.mp4',
+        //         sizeOfElement: 5678,
+        //         use: true
+        //     },
+        //     {
+        //         nameOfElement: 'family.mp3',
+        //         sizeOfElement: 890,
+        //         use: false
+        //     }
+        // ];
+
+
+        // const hasil = (i) => {
+        //     let a = Math.pow(i, 3);
+
+        //     return a;
+        // }
+
+        // alert(hasil(5));
+
+
+        // let d = 1;
+        // for (let j of multiMedia) {
+        //     d *= hasil(j);
+        // }
+        // console.log(d);
+
+
+        // const cemle = (parametrArray) => {
+        //     let cem = 0;
+        //     for (let i of parametrArray) {
+        //         if (i.nameOfElement.endsWith('mp3')) {
+        //             cem += i.sizeOfElement;
+        //         }
+        //     }
+        //     return cem;
+        // }
+
+        // console.log(cemle(multiMedia));
+
+        // const siyahiTap = (siyahi) => {
+        //     siyahi.forEach((element) => {
+
+        //     });
+        // }
+
+        // let array1 = ["alma", "heyva", "nar"],
+        //     array2 = [12, 34, 23, 78];
+
+        // siyahiTap(array1);
+
+
+        // let list1 = [12, 32, 45, 67, 1, 100];
+        // list1.sort((a, b) => a - b)
+        // console.log(list1)
+
+
+        // let a = prompt(), newdEded = "";
+        // for (let i in a) {
+        //     newdEded += a[i];
+        //     if (i < a.length - 1) {
+        //         newdEded += " ";
+        //     }
+        // }
+
+        //console.log(newdEded);
+
+
+        // let say = 0, a = +prompt();
+        // do {
+        //     a = Math.floor(a / 10);
+        //     say++;
+        // } while (a > 0)
+
+        // console.log(say);
+
+
+        // const a = "Leyla";
+        // a[0]
+        // const Array1 = [12, 23, "Leyla"];
+        // Array1[0]
+
+        // const object1 = {
+        //     ad: "Leyla",
+        //     yash: 17
+        // }
+        // object1.ad
+
+        // let cem=0;
+        // const list5 = [
+        //     {
+        //         ad: "Shukur",
+        //         yash: 17
+        //     },
+        //     {
+        //         ad: "Shukurov",
+        //         yash: 17
+        //     }
+        // ];
+        // for(let i of list5){
+        //     cem+=i.yash;
+        // }
+        // console.log(cem);
+
+        // const arrayOfMusic = [
+        //     {
+        //         artist: 'efendi',
+        //         music: 'cleopatra',
+        //         country: 'azerbaycan',
+        //         year: 2020
+        //     },
+        //     {
+        //         artist: 'efendi',
+        //         music: 'cleopatra',
+        //         country: 'azerbaycan',
+        //         year: 2020
+        //     },
+        //     {
+        //         artist: 'Shukur',
+        //         music: 'mata hari',
+        //         country: 'azerbaycan',
+        //         year: 2021
+        //     },
+        //     {
+        //         artist: 'Shukur',
+        //         music: 'mata hari',
+        //         country: 'azerbaycan',
+        //         year: 2021
+        //     },
+        //     {
+        //         artist: 'loreen',
+        //         music: 'euphoria',
+        //         country: 'sweden',
+        //         year: 2012
+        //     },
+        //     {
+        //         artist: 'Shukur',
+        //         music: 'Cleopatra',
+        //         country: 'Shukurovv',
+        //         year: 2023
+        //     },
+        //     {
+        //         artist: 'Shukur',
+        //         music: 'Cleopatra',
+        //         country: 'Shukurovv',
+        //         year: 2023
+        //     }
+        // ];
+
+
+
+        // let list1 = [];
+        // arrayOfMusic.forEach((e) => {
+        //     if(!list1.includes(e.country)){
+        //         list1.push(e.country);
+        //     }
+        // });
+
+        // console.log(list1);
+
+
+        // const teacher = [
+        //     {
+        //         name: 'Vidadi Ali',
+        //         salary: 550,
+        //         hours: 560
+        //     },
+        //     {
+        //         name: 'Vidadi Əlizadə',
+        //         salary: 500,
+        //         hours: 450
+        //     },
+        //     {
+        //         name: 'Əsmər Vəliyeva',
+        //         salary: 500,
+        //         hours: 400
+        //     }
+        // ];
+
+        // let newList = [];
+
+        // teacher.forEach((e)=>{
+        //     if(!newList.includes(e.name.split(" ")[0])){
+        //         newList.push(e.name.split(" ")[0]);
+        //     }
+        // })
+        // console.log(newList);
+
+
+        // const arrayOfMenu = [
+        //     {
+        //         contenOfLink: 'Youtube',
+        //         pathOfLink: 'www.youtube.com'
+        //     },
+        //     {
+        //         contenOfLink: 'instagram',
+        //         pathOfLink: 'instagram.com'
+        //     },
+        //     {
+        //         contenOfLink: 'tik-tok',
+        //         pathOfLink: 'tiktok.com'
+        //     },
+        //     {
+        //         contenOfLink: 'facebook',
+        //         pathOfLink: 'facebook.com'
+        //     }
+        // ]
+        // const skletElement = document.getElementsByTagName('body')[0]
+        // const element1 = document.createElement('div');
+
+        // const element1Text = document.createElement('span');
+        // element1Text.textContent = "Mən tələbəyəm!";
+        // element1Text.setAttribute('class', 'span-box boxs')
+
+        // element1.append(element1Text);
+        // skletElement.append(element1);
+
+        // arrayOfMenu.forEach((e)=>{
+        //     const link1=document.createElement('a');
+        //     link1.textContent = e.contenOfLink;
+        //     link1.style.padding = "0 10px";
+        //     link1.setAttribute('href', e.pathOfLink);
+        //     skletElement.append(link1);
+        // })
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
